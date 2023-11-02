@@ -5,12 +5,14 @@ require("dotenv").config();
 const express = require("express");
 const connectMongoDB = require("./config/mongodb");
 const TopicController = require("./controller/TopicController");
+const cors = require("cors");
 
 //create express app
 const app = express();
 
 // Add this middleware to parse JSON request bodies
 app.use(express.json());
+app.use(cors());
 
 //connect to DB
 connectMongoDB();

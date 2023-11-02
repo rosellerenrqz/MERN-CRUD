@@ -1,8 +1,13 @@
 const Topic = require("../models/Topic");
 
 const getTopic = async (req, res) => {
-  const topic = await Topic.find();
-  res.json({ topic });
+  try {
+    const topic = await Topic.find();
+    res.json({ topic });
+  } catch (error) {
+    console.log("Error fetching topic", error);
+    res.status(500).json({ error: "Internal server error" });
+  }
 };
 
 const getTopicById = async (req, res) => {
